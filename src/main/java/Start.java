@@ -6,6 +6,8 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by ramon on 10.10.2016.
@@ -17,13 +19,14 @@ public class Start {
 
 //            sqliteMP3Dao.create();
 
-            MP3 mp3 = null;
+//            MP3 mp3 = null;
+
 //            mp3 = new MP3();
 //            mp3.setName("Григорий Лепс Трек№222");
 //            mp3.setAuthor("Григорий Лепс");
 //
-//            sqliteMP3Dao.insert(mp3);
-//
+//            System.out.println(sqliteMP3Dao.insert(mp3));
+
 //            List<Music> list = new ArrayList<>();
 //
 //            mp3 = new MP3();
@@ -38,10 +41,27 @@ public class Start {
 //
 //            sqliteMP3Dao.insert(list);
 
-            mp3 = new MP3();
-            mp3.setName("Григорий Лепс Трек№222");
-            mp3.setAuthor("Григорий Лепс!!!");
-            sqliteMP3Dao.update(mp3);
+//            getByNameAndUpdateAuthor(sqliteMP3Dao, "Трек№2");
+//            sqliteMP3Dao.delete(942891);
+//            System.out.println(sqliteMP3Dao.getMP3Count());
+
+            Map<String, Integer> map = sqliteMP3Dao.getGroup();
+            for (Map.Entry<String, Integer> entry : map.entrySet()){
+                System.out.println(entry.getKey() + " - " + entry.getValue());
+            }
         }
     }
+
+    static void getByNameAndUpdateAuthor(SqliteMP3Dao dao, String name){
+        List<Music> list = dao.getByName(name);
+        for (Music music : list){
+            MP3 mp3 = new MP3();
+            mp3.setId(music.getId());
+            mp3.setName(music.getName());
+            mp3.setAuthor(music.getAuthor() + "!");
+            dao.update(mp3);
+        }
+    }
+
+    static void getByIdAndDelete(SqliteMP3Dao dao, int id){}
 }

@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface MusicDao {
     void create();
-    void insert(Music music);
+    int insert(Music music);
     void insert(List<Music> list);
     void update(Music music);
     void delete(int id);
