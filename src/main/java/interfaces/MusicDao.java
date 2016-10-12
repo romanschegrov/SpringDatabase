@@ -7,8 +7,12 @@ import java.util.List;
  */
 public interface MusicDao {
     void create();
+
     int insert(Music music);
     void insert(List<Music> list);
+    void insertWithSimpleJdbcInsert(Music music);
+    int[] insertBatchWithSimpleJdbcInsert(List<Music> list);
+
     void update(Music music);
     void delete(int id);
     Music getById(int id);

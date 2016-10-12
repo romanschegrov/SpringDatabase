@@ -1,22 +1,17 @@
 package impl;
 
-import interfaces.Music;
-
 /**
- * Created by ramon on 10.10.2016.
+ * Created by ramon on 12.10.2016.
  */
-public class MP3 implements Music {
-
+public class Author {
     private int id;
     private String name;
-    private Author author;
 
     @Override
     public String toString() {
-        return "MP3{" +
+        return "Author{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", author=" + author +
                 '}';
     }
 
@@ -34,14 +29,5 @@ public class MP3 implements Music {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
     }
 }
