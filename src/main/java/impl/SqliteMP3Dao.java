@@ -2,24 +2,21 @@ package impl;
 
 import interfaces.Music;
 import interfaces.MusicDao;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,12 +40,6 @@ public class SqliteMP3Dao implements MusicDao {
         this.jdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("mp3").usingColumns("name","author");
     }
 
-    //    public SqliteMP3Dao(DataSource dataSource) {
-//        this.jdbcTemplate = new JdbcTemplate(dataSource);
-//        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-//        this.jdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("mp3").usingColumns("name","author");
-//    }
-
     @Override
     public void create() {
         jdbcTemplate.execute("CREATE TABLE mp3(" +
@@ -67,7 +58,7 @@ public class SqliteMP3Dao implements MusicDao {
     }
 
     @Override
-    @Transactional
+    @Transactional()
     public int insert(Music music) {
         String sqlAuthor = "INSERT INTO author(name) VALUES (:author_name);";
 

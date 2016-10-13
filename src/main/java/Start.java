@@ -1,6 +1,7 @@
 import impl.Author;
 import impl.MP3;
 import impl.SqliteMP3Dao;
+import impl.TestBean;
 import interfaces.Music;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
@@ -16,10 +17,11 @@ public class Start {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = new GenericXmlApplicationContext("context.xml");
-        System.out.println(context.getBeanDefinitionNames().toString());
+//        TestBean testBean = context.getBean("testBean", TestBean.class);
+//        System.out.println(testBean);
         sqliteMP3Dao = context.getBean("sqliteMP3Dao",SqliteMP3Dao.class);
 //        createMP3Table()
-//        insertOne();
+        insertOne();
 //        insertList();
 //        getByNameAndUpdateAuthor("Лондон");
 //        System.out.println(Arrays.asList(insertBatchWithSimpleJdbcInsert()));
